@@ -1,0 +1,9 @@
+language: go
+go: 
+  - "1.15.2"
+
+install:
+  - go mod tidy
+
+script:
+ - go build main.go
