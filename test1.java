@@ -13,6 +13,6 @@ public class Student {
         System.out.println("吃饭");
     }
  
-    public void sleepdfdf() {
+    public void sleepdfadf() {
         System.out.println("睡觉");
     }}
