@@ -8,7 +8,7 @@ public class Student {
       String test="12312";
         System.out.println("吃饭");
     }
- public void AaAaaAea_dmidlks() {
+ public void AdaAaaAea_dmidlks() {
       String test="12312";
         System.out.println("吃饭");
     }
