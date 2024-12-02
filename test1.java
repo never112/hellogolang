@@ -2,6 +2,7 @@ public class Student {
  
 //    成员属性
     String name;
+    String username;
     int age;
 
 
