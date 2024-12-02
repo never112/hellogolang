@@ -43,7 +43,7 @@ jobs:
       - name: Build
         run: go build -v main.go
   build-v3-mac:
-    runs-on: self-host-mac
+    runs-on: macOS
     steps:
       - uses: actions/checkout@v4
 
