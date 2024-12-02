@@ -4,6 +4,18 @@ public class Student {
     String name;
     int age;
 
+
+
+
+
+ public void aazzdsdfsddeefad4tdf() {
+      String test="12312";
+        System.out.println("吃饭");
+    }
+ public void sdfsdfd() {
+      String test="12312";
+        System.out.println("吃饭");
+    }
   public void aazzddeefad4tdf() {
       String test="12312";
         System.out.println("吃饭");
