@@ -58,25 +58,18 @@ jobs:
       - name: Build
         run: go build -v main.go
 
-  build-suer-linter:
-    name: Lint
+  build-v4-linter:
     runs-on: self-hosted-linux-ubuntu
-    permissions:
-      contents: read
-      packages: read
-      # To report GitHub Actions status checks
-      statuses: write
+    steps:
+      - uses: actions/checkout@v4
 
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v4
-          with:
-            # super-linter needs the full git history to get the
-            # list of files that changed across commits
-            fetch-depth: 0
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
 
-        - name: Super-linter
-          uses: super-linter/super-linter@v7.2.0 # x-release-please-version
-          env:
-            # To report GitHub Actions status checks
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: uname
+        run: uname -a
+
+      - name: Build
+        run: go build -v main.go
