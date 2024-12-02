@@ -7,6 +7,7 @@ public class Student {
     String zzz;
     String zzzdf;
     String xxxx;
+    String testname;
 
 
 
