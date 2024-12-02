@@ -4,21 +4,7 @@ public class Student {
     String name;
     int age;
 
-
-
-
-
-
- public void aazzdsdfsddeefad4tdf() {
-      String test="12312";
-        System.out.println("吃饭");
-    }
- public void sdfsdfd() {
-      String test="12312";
-        System.out.println("吃饭");
-    }
-  public void aazzddeefad4tdf() {
-
+  public void aazzddeefadtdf() {
       String test="12312";
         System.out.println("吃饭");
     }
@@ -27,6 +13,6 @@ public class Student {
         System.out.println("吃饭");
     }
  
-    public void sleepdfddf() {
+    public void sleepdfdf() {
         System.out.println("睡觉");
     }}
