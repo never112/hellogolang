@@ -2,9 +2,28 @@ public class Student {
  
 //    成员属性
     String name;
+    String username;
     int age;
+    String zzz;
+    String zzzdf;
+    String xxxx;
+    String testname;
 
-  public void aazzddeefadtdf() {
+
+
+
+
+
+ public void aazzdsdfsddeefad4tdf() {
+      String test="12312";
+        System.out.println("吃饭");
+    }
+ public void sdfsdfd() {
+      String test="12312";
+        System.out.println("吃饭");
+    }
+  public void aazzddeefad4tdf() {
+
       String test="12312";
         System.out.println("吃饭");
     }
@@ -13,6 +32,6 @@ public class Student {
         System.out.println("吃饭");
     }
  
-    public void sleepdfdf() {
+    public void sleepdfddf() {
         System.out.println("睡觉");
     }}
