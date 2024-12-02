@@ -60,8 +60,19 @@ jobs:
 
   build-v4-linter:
     runs-on: self-hosted-linux-ubuntu
+    permissions:
+      contents: read
+      packages: read
+      # To report GitHub Actions status checks
+      statuses: write
     steps:
-      - uses: actions/checkout@v4
+      - name: codecheckout
+        uses: actions/checkout@v4
+        with:
+          # super-linter needs the full git history to get the
+          # list of files that changed across commits
+          fetch-depth: 0
+
 
       - name: Set up Go
         uses: actions/setup-go@v4
