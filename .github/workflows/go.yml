@@ -81,7 +81,7 @@ jobs:
         run: go build -v main.go
 
   build-v4-linter:
-    runs-on: self-hosted-linux-ubuntu
+    runs-on: macOS
     permissions:
       contents: read
       packages: read
