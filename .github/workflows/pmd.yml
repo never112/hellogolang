@@ -37,4 +37,35 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: pmd-report.sarif
+
+  build-v4-linter-ongithub:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      # To report GitHub Actions status checks
+      statuses: write
+    steps:
+      - name: codecheckout
+        uses: actions/checkout@v4
+        with:
+          # super-linter needs the full git history to get the
+          # list of files that changed across commits
+          fetch-depth: 0
+
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+
+      - name: uname
+        run: uname -a
+
+      - name: Super-linter
+        uses: super-linter/super-linter/slim@v7.2.0 # x-release-please-version
+        env:
+          # To report GitHub Actions status checks
+          GITHUB_TOKEN: ${{ secrets.TEST_GITHUB_TOKEN }}
+
    
