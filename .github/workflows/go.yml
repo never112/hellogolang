@@ -108,4 +108,4 @@ jobs:
         uses: super-linter/super-linter/slim@v7.2.0 # x-release-please-version
         env:
           # To report GitHub Actions status checks
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TEST_GITHUB_TOKEN }}
