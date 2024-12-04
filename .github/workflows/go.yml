@@ -81,7 +81,7 @@ jobs:
         run: go build -v main.go
 
   build-v4-linter:
-    runs-on: testdind
+    runs-on: testdind1
     permissions:
       contents: read
       packages: read
