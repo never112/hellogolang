@@ -38,6 +38,35 @@ jobs:
         with:
           sarif_file: pmd-report.sarif
 
+  build-v4-reviewbot-ongithub:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      # To report GitHub Actions status checks
+      statuses: write
+    steps:
+      - name: codecheckout
+        uses: actions/checkout@v4
+        with:
+          # super-linter needs the full git history to get the
+          # list of files that changed across commits
+          fetch-depth: 0
+
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+
+      - name: uname
+        run: uname -a
+
+      - name: reviewbot
+        uses: never/reviewbot@4d81aa21000609e4351eb742ce10ddc83f5db5be # x-release-please-version
+        env:
+          # To report GitHub Actions status checks
+          GITHUB_TOKEN: ${{ secrets.TEST_GITHUB_TOKEN }}
   build-v4-linter-ongithub:
     runs-on: ubuntu-latest
     permissions:
