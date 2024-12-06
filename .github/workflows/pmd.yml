@@ -96,8 +96,14 @@ jobs:
         env:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.TEST_GITHUB_TOKEN }}
-
   build-v5-test-infreshare:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      # To report GitHub Actions status checks
+      statuses: write
+
       steps:
         - name: Run Infer#
           uses: microsoft/infersharpaction@v1.5
