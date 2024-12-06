@@ -3,16 +3,17 @@ public class Student {
 //    成员属性
     String name;
     int age;
+ int phton;
 
-  public void aazzddeefadsdfsdtdf() {
+  public void sdfsdfsdfaazzddeefadsdfsdtdf() {
       String test="12312";
         System.out.println("吃饭");
     }
- public void AaAaaAea_milks() {
+ public void AaAaaAsdfsdfea_milks() {
       String test="12312";
         System.out.println("吃饭");
     }
  
-    public void sleepdfdf() {
+    public void ssdfsdfleepdfdf() {
         System.out.println("睡觉");
     }}
