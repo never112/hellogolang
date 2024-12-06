@@ -96,6 +96,35 @@ jobs:
         env:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.TEST_GITHUB_TOKEN }}
+  build-v4-linter-ongithub1:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      # To report GitHub Actions status checks
+      statuses: write
+    steps:
+      - name: codecheckout
+        uses: actions/checkout@v4
+        with:
+          # super-linter needs the full git history to get the
+          # list of files that changed across commits
+          fetch-depth: 0
+
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+
+      - name: uname
+        run: uname -a
+
+      - name: Super-linter
+        uses: super-linter/super-linter/slim@v7.2.0 # x-release-please-version
+        env:
+          # To report GitHub Actions status checks
+          GITHUB_TOKEN: ${{ secrets.TEST_GITHUB_TOKEN }}
   build-v5-test-infreshare:
     runs-on: ubuntu-latest
     permissions:
@@ -104,16 +133,16 @@ jobs:
       # To report GitHub Actions status checks
       statuses: write
 
-      steps:
-        - name: Run Infer#
-          uses: microsoft/infersharpaction@v1.5
-          id: runinfersharp
-          with:
-            binary-path: '<path to the binary directory containing .dlls and .pdbs>'
+    steps:
+      - name: Run Infer#
+        uses: microsoft/infersharpaction@v1.5
+        id: runinfersharp
+        with:
+          binary-path: '<path to the binary directory containing .dlls and .pdbs>'
 
-        - name: Upload SARIF output to GitHub Security Center
-          uses: github/codeql-action/upload-sarif@v2
-          with:
-            sarif_file: infer-out/report.sarif
+      - name: Upload SARIF output to GitHub Security Center
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: infer-out/report.sarif
 
    
