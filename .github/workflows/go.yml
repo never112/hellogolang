@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: issue-metrics-test-user
-        uses: never112/actiondockerdemo@v2
+        uses: never112/actiondockerdemo@v3
   build:
     runs-on: self-hosted
     steps:
