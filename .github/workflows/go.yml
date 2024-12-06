@@ -28,8 +28,8 @@ jobs:
   build--testcustomaction:
     runs-on: ubuntu-latest
     steps:
-      - name: issue-metrics-test-user
-        uses: never112/actiondockerdemo@v5
+     - name: pmdscan
+       uses: never112/actiondockerdemo@v6
   build:
     runs-on: self-hosted
     steps:
