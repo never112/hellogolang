@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - name: pmdscan
-       uses: never112/actiondockerdemo@v6
+       uses: never112/actiondockerdemo@v7
        with:
          extracommand: -shortnames
   build:
