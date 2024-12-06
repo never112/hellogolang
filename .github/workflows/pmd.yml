@@ -97,4 +97,17 @@ jobs:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.TEST_GITHUB_TOKEN }}
 
+  build-v5-test-infreshare:
+      steps:
+        - name: Run Infer#
+          uses: microsoft/infersharpaction@v1.5
+          id: runinfersharp
+          with:
+            binary-path: '<path to the binary directory containing .dlls and .pdbs>'
+
+        - name: Upload SARIF output to GitHub Security Center
+          uses: github/codeql-action/upload-sarif@v2
+          with:
+            sarif_file: infer-out/report.sarif
+
    
