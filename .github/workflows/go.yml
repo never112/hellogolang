@@ -28,6 +28,7 @@ jobs:
   build--testcustomaction:
     runs-on: ubuntu-latest
     steps:
+     - uses: actions/checkout@v4
      - name: pmdscan
        uses: never112/actiondockerdemo@v8
        with:
