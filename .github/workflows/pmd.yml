@@ -37,6 +37,25 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: pmd-report.sarif
+  build-v5-test-infreshare:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      # To report GitHub Actions status checks
+      statuses: write
+
+    steps:
+      - name: Run Infer#
+        uses: microsoft/infersharpaction@v1.5
+        id: runinfersharp
+        with:
+          binary-path: '<path to the binary directory containing .dlls and .pdbs>'
+
+      - name: Upload SARIF output to GitHub Security Center
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: infer-out/report.sarif
 
   build-v4-reviewbot-ongithub:
     runs-on: ubuntu-latest
@@ -125,24 +144,5 @@ jobs:
         env:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.TEST_GITHUB_TOKEN }}
-  build-v5-test-infreshare:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: read
-      # To report GitHub Actions status checks
-      statuses: write
-
-    steps:
-      - name: Run Infer#
-        uses: microsoft/infersharpaction@v1.5
-        id: runinfersharp
-        with:
-          binary-path: '<path to the binary directory containing .dlls and .pdbs>'
-
-      - name: Upload SARIF output to GitHub Security Center
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: infer-out/report.sarif
 
    
