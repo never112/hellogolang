@@ -30,6 +30,8 @@ jobs:
     steps:
      - name: pmdscan
        uses: never112/actiondockerdemo@v6
+       with:
+         codePath: -debug
   build:
     runs-on: self-hosted
     steps:
