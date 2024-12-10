@@ -10,16 +10,121 @@ on:
     branches: [ "main" ]
 
 jobs:
-
-  build:
+  build-on-githubvm:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.20'
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
 
-    - name: Build
-      run: go build -v main.go
+      - name: uname
+        run: uname -a
+
+      - name: Build
+        run: go build -v main.go
+  build--testcustomaction:
+    runs-on: ubuntu-latest
+    steps:
+      - name: issue-metrics-test-user
+        uses: never112/actiondockerdemo@v2
+  build:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+
+      - name: uname
+        run: uname -a
+
+      - name: Build
+        run: go build -v main.go
+
+  build-envprint:
+    runs-on: self-hosted
+    steps:
+      - name: set PR_INFO
+        run: |
+            echo PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }') >> $GITHUB_ENV
+            echo PR_TITLE=$(jq --raw-output .pull_request.title "$GITHUB_EVENT_PATH") >> $GITHUB_ENV
+            echo PR_URL=$(jq --raw-output .pull_request.html_url "$GITHUB_EVENT_PATH") >> $GITHUB_ENV
+            echo PR_USER=$(jq --raw-output .pull_request.user.login "$GITHUB_EVENT_PATH") >> $GITHUB_ENV
+            # 打印环境变量
+      - name: print env
+        run: printenv
+      - name: post reqeust
+        run: curl http://127.0.0.0.1/gitlab/pr/12
+
+
+
+      - name: uname
+        run: uname -a
+
+      - name: Build
+        run: go build -v main.go
+  build-v2:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+
+      - name: uname
+        run: uname -a
+
+      - name: Build
+        run: go build -v main.go
+  build-v3-mac:
+    runs-on: macOS
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+
+      - name: uname
+        run: uname -a
+
+      - name: Build
+        run: go build -v main.go
+
+  build-v4-linter:
+    runs-on: testdind1
+    permissions:
+      contents: read
+      packages: read
+      # To report GitHub Actions status checks
+      statuses: write
+    steps:
+      - name: codecheckout
+        uses: actions/checkout@v4
+        with:
+          # super-linter needs the full git history to get the
+          # list of files that changed across commits
+          fetch-depth: 0
+
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+
+      - name: uname
+        run: uname -a
+
+      - name: Super-linter
+        uses: super-linter/super-linter/slim@v7.2.0 # x-release-please-version
+        env:
+          # To report GitHub Actions status checks
+          GITHUB_TOKEN: ${{ secrets.TEST_GITHUB_TOKEN }}
