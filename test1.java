@@ -16,7 +16,7 @@ public class Student {
 
 
 
- public void aazzdsdfsddedfdefad4tdf() {
+ public void aazzdsdfsddedfdedfdffad4tdf() {
       String test="12312";
         System.out.println("吃饭");
     }
